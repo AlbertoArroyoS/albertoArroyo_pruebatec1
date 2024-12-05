@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.logica.Empleado;
+import org.example.persistencia.controlador.ControladoraPersistencia;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,31 +15,33 @@ public class Main {
 
     public static void main(String[] args) {
 
+        ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+
 
         boolean continuar = true;
         do {
 
             //Cargamos el menu inicial y recuperamos la opción elegida
             int opcion = menu();
-            //Si la opcion está fuera del rango de opciones se repetira el menu
+            //Validacion para que se repita el menu en caso de que la opción esté fuera de rango
             while (opcion<1 || opcion>6){
                 opcion = menu();
             }
             switch (opcion) {
                 case 1:
-                    // Lógica para consultar empleado por ID
+
                     break;
                 case 2:
-                    // Lógica para consultar empleados por nombre
+                    // Lógica para Listar todos los empleados
                     break;
                 case 3:
-                    // Lógica para consultar empleados por cargo
+                    // Lógica para Actualizar información de un empleado
                     break;
                 case 4:
-                    // Lógica para añadir un nuevo empleado
+                    // Lógica para Eliminar un empleado
                     break;
                 case 5:
-                    // Lógica para listar empleados
+                    // Lógica para Buscar empleados por cargo
                     break;
                 case 6:
                     // Salir de la aplicación
@@ -69,8 +74,7 @@ public class Main {
         System.out.println("5. Buscar empleados por cargo");
         System.out.println("6. Salir de la aplicación");
         System.out.println("----------------------------------------------------");
-        System.out.println("Introduzca una opción del 1 al 6,");
-        System.out.println("* Si quiere salir seleccione 6");
+        System.out.println("Introduzca una opción del 1 al 6");
         System.out.println("----------------------------------------------------");
 
         try {
