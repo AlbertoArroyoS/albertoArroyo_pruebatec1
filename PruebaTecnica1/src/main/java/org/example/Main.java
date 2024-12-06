@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner leer;
+
     //Para poder leer las opciones del menu	que estan en un metodo estatico
     static {
         leer = new Scanner(System.in);
@@ -20,25 +21,27 @@ public class Main {
 
         boolean continuar = true;
         do {
-
-            //Cargamos el menu inicial y recuperamos la opción elegida
+            //Carga el menu inicial y se recupera la opción elegida
             int opcion = menu();
-            //Validacion para que se repita el menu en caso de que la opción esté fuera de rango
-            while (opcion<1 || opcion>6){
+            //Validacion para que se repita el menu en caso de que la opción esté fuera de rango 1-6 de tipo entero
+            while (opcion < 1 || opcion > 6) {
                 opcion = menu();
             }
             switch (opcion) {
                 case 1:
-
+                    // Lógica para crear empleado
+                    controlPersis.crearEmpleado();
                     break;
                 case 2:
                     // Lógica para Listar todos los empleados
+
                     break;
                 case 3:
                     // Lógica para Actualizar información de un empleado
                     break;
                 case 4:
                     // Lógica para Eliminar un empleado
+                    controlPersis.borrarEmpleado();
                     break;
                 case 5:
                     // Lógica para Buscar empleados por cargo
@@ -58,6 +61,7 @@ public class Main {
 
     /**
      * El metodo menu() muestra un menú de opciones y permite al usuario seleccionar una.
+     * Tiene control de excepciones por si se mete algún tipo de dato que no sea de tipo entero
      *
      * @return un número entero, que representa la opción seleccionada por el usuario.
      */

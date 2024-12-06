@@ -19,7 +19,6 @@ public class ControladoraPersistencia {
 
     Scanner leer = new Scanner(System.in);
 
-
     public void crearEmpleado() {
         // Validación para el nombre
         String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");
@@ -42,13 +41,17 @@ public class ControladoraPersistencia {
 
             // Asignación de los valores al empleado
             empleadoJPA.create(new Empleado(nombre, apellido, cargo, salario, fechaInicio));
+            System.out.println("Empleado añadido correctamente");
 
         }
     }
 
-    public void borrarEmpleado(Long id) {
+    public void borrarEmpleado() {
+
+        Long idEmpleado = validarEntradaLong("Introduzca id del empleado a borrar");
+
         try {
-            empleadoJPA.destroy(id);
+            empleadoJPA.destroy(idEmpleado);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,8 +97,8 @@ public class ControladoraPersistencia {
         String entrada = "";
         do {
             System.out.println(mensaje);
-            entrada = leer.nextLine();
-            if (entrada.trim().isEmpty()) {
+            entrada = leer.nextLine().trim();//trim para quitar los espacios al principio y final en caso de que los hayan puesto
+            if (entrada.isEmpty()) {
                 System.out.println("*** El campo no puede estar vacío ni contener solo espacios en blanco ***");
             }
         } while (entrada.trim().isEmpty());
@@ -109,7 +112,7 @@ public class ControladoraPersistencia {
         while (!entradaValida) {
             try {
                 System.out.println(mensaje);
-                entrada = Double.parseDouble(leer.nextLine());
+                entrada = Double.parseDouble(leer.nextLine().trim());
                 entradaValida = true;
             } catch (NumberFormatException e) {
                 System.out.println("Entrada no válida. Ingrese un valor numérico.");
@@ -125,7 +128,7 @@ public class ControladoraPersistencia {
         while (!entradaValida) {
             try {
                 System.out.println(mensaje);
-                String fechaString = leer.nextLine();
+                String fechaString = leer.nextLine().trim();
                 // Formato esperado: dd/mm/yyyy
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 fecha = formato.parse(fechaString);
@@ -136,12 +139,25 @@ public class ControladoraPersistencia {
         }
         return fecha;
     }
-
+    public Long validarEntradaLong(String mensaje) {
+        Long entrada = 0L;
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            try {
+                System.out.println(mensaje);
+                entrada = Long.parseLong(leer.nextLine().trim()); // Convertir la entrada a long
+                entradaValida = true; // Si no hay excepción, la entrada es válida
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Ingrese un valor numérico entero de tipo long."); // Manejo de error
+            }
+        }
+        return entrada;
+    }
     //metodo para comprobar si ya existe un empleado con ese nombre y apellido
     public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
         List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
         for (Empleado e : listaEmpleados) {
-            if (e.getNombre().equals(nombre) && e.getApellido().equals(apellido)) {
+            if (e.getNombre().equalsIgnoreCase(nombre) && e.getApellido().equalsIgnoreCase(apellido)) {
                 return true; // Encontrado un empleado con el mismo nombre y apellido
             }
         }
