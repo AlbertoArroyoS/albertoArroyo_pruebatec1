@@ -4,6 +4,7 @@ package org.example.logica;
  */
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -85,13 +86,14 @@ public class Empleado implements Serializable {
     //toString
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return "Empleado{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", cargo='" + cargo + '\'' +
                 ", salario=" + salario +
-                ", fechaInicio=" + fechaInicio +
+                ", fechaInicio=" + (fechaInicio != null ? sdf.format(fechaInicio) : null) +
                 '}';
     }
 }

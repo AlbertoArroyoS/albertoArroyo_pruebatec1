@@ -47,6 +47,8 @@ public class ControladoraPersistencia {
 
         try {
             empleadoJPA.edit(empleado);
+            System.out.println("Empleado modificado correctamente");
+            System.out.println(empleado);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }

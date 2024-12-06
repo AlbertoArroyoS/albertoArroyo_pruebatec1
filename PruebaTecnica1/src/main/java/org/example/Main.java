@@ -20,7 +20,6 @@ public class Main {
 
         ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
-
         boolean continuar = true;
         do {
             //Carga el menu inicial y se recupera la opción elegida
@@ -88,7 +87,7 @@ public class Main {
 
                                 break;
                             case 6:
-                                // Salir de la aplicación
+                                // Lógica para Guardar datos y volver al menu principal
                                 System.out.println("Guardando información...");
                                 if (empleadoPorId != null) {
                                     controlPersis.modificarEmpleado(empleadoPorId);
@@ -96,7 +95,7 @@ public class Main {
                                 continuarEditando = false;
                                 break;
                             case 7:
-                                // Salir de la aplicación
+                                // Volver sin guardar
                                 System.out.println("Volver sin guardar...");
                                 continuarEditando = false;
                                 break;
@@ -112,6 +111,12 @@ public class Main {
                     break;
                 case 5:
                     // Lógica para Buscar empleados por cargo
+                    String cargoEmpleado = controlPersis.validacionEntradaTexto("Introduzca el cargo de los empleados a buscar:");
+                    List<Empleado> listaEmpleadosTipo = controlPersis.traerEmpleadosPorTipo(cargoEmpleado);
+                    System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
+                    for (Empleado per : listaEmpleadosTipo) {
+                        System.out.println(per.toString());
+                    }
                     break;
                 case 6:
                     // Salir de la aplicación
@@ -123,7 +128,6 @@ public class Main {
                     break;
             }
         } while (continuar);
-
     }
 
     /**
@@ -163,6 +167,13 @@ public class Main {
         return opcion;
     }
 
+    /**
+     * Metodo para mostrar un menú de edición de empleados.
+     * Permite al usuario seleccionar una opción para editar los datos de un empleado.
+     * Tiene control de excepciones por si se mete algún tipo de dato que no sea de tipo entero
+     *
+     * @return un número entero, que representa la opción seleccionada por el usuario.
+     */
     public static int menuEditar() {
         int opcion = 0;
 
