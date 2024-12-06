@@ -3,6 +3,7 @@ package org.example;
 import org.example.logica.Empleado;
 import org.example.persistencia.controlador.ControladoraPersistencia;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -30,11 +31,16 @@ public class Main {
             switch (opcion) {
                 case 1:
                     // Lógica para crear empleado
-                    controlPersis.crearEmpleado();
+                    Empleado empleado = controlPersis.pedirDatosEmpleado();
+                    controlPersis.crearEmpleado(empleado);
                     break;
                 case 2:
                     // Lógica para Listar todos los empleados
-
+                    List<Empleado> listaEmpleados = controlPersis.traerEmpleado();
+                    System.out.println("----Lista de empleados----");
+                    for (Empleado per:listaEmpleados) {
+                        System.out.println(per.toString());
+                    }
                     break;
                 case 3:
                     // Lógica para Actualizar información de un empleado

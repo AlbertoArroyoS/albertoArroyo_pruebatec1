@@ -19,35 +19,17 @@ public class ControladoraPersistencia {
 
     Scanner leer = new Scanner(System.in);
 
-    public void crearEmpleado() {
-        // Validación para el nombre
-        String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");
-
-        // Validación para el apellido
-        String apellido = validacionEntradaTexto("Introduzca el apellido del empleado:");
-
-        if (existeEmpleadoConNombreYApellido(nombre, apellido)) {
-            System.out.println("Ya existe un empleado con el mismo nombre y apellido. No se puede dar de alta.");
-            return;
-        }else{
-            // Validación para el cargo
-            String cargo = validacionEntradaTexto("Introduzca el cargo del empleado:");
-
-            // Validación para el salario
-            Double salario = validarEntradaDecimal("Introduzca el salario del empleado:");
-
-            // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
-            Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
-
-            // Asignación de los valores al empleado
-            empleadoJPA.create(new Empleado(nombre, apellido, cargo, salario, fechaInicio));
+    public void crearEmpleado(Empleado empleado) {
+        if (empleado != null) {
+            empleadoJPA.create(empleado); // Crear el empleado en la base de datos
             System.out.println("Empleado añadido correctamente");
-
+        } else {
+            System.out.println("No se pudo añadir el empleado."); // Mensaje en caso de error
         }
     }
 
     public void borrarEmpleado() {
-
+        //Validación del id Long
         Long idEmpleado = validarEntradaLong("Introduzca id del empleado a borrar");
 
         try {
@@ -163,6 +145,34 @@ public class ControladoraPersistencia {
         }
         return false; // No hay duplicados
     }
+
+    //Pedir datos al usuario con validaciones
+    public Empleado pedirDatosEmpleado() {
+        // Validación para el nombre
+        String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");
+
+        // Validación para el apellido
+        String apellido = validacionEntradaTexto("Introduzca el apellido del empleado:");
+
+        // Verificar si ya existe un empleado con el mismo nombre y apellido
+        if (existeEmpleadoConNombreYApellido(nombre, apellido)) {
+            System.out.println("Ya existe un empleado con el mismo nombre y apellido. No se puede dar de alta.");
+            return null; // Retornar null si el empleado ya existe
+        }
+
+        // Validación para el cargo
+        String cargo = validacionEntradaTexto("Introduzca el cargo del empleado:");
+
+        // Validación para el salario
+        Double salario = validarEntradaDecimal("Introduzca el salario del empleado:");
+
+        // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
+        Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
+
+        // Crear y devolver el empleado con los datos ingresados
+        return new Empleado(nombre, apellido, cargo, salario, fechaInicio);
+    }
+
 
 
 }
