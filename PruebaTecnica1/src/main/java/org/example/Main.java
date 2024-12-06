@@ -37,9 +37,13 @@ public class Main {
                 case 2:
                     // Lógica para Listar todos los empleados
                     List<Empleado> listaEmpleados = controlPersis.traerEmpleado();
-                    System.out.println("----Lista de empleados----");
-                    for (Empleado per : listaEmpleados) {
-                        System.out.println(per.toString());
+                    if (listaEmpleados.isEmpty()) {
+                        System.out.println("No hay empleados registrados.");
+                    }else {
+                        System.out.println("----Lista de empleados----");
+                        for (Empleado per : listaEmpleados) {
+                            System.out.println(per.toString());
+                        }
                     }
                     break;
                 case 3:
@@ -113,9 +117,13 @@ public class Main {
                     // Lógica para Buscar empleados por cargo
                     String cargoEmpleado = controlPersis.validacionEntradaTexto("Introduzca el cargo de los empleados a buscar:");
                     List<Empleado> listaEmpleadosTipo = controlPersis.traerEmpleadosPorTipo(cargoEmpleado);
-                    System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
-                    for (Empleado per : listaEmpleadosTipo) {
-                        System.out.println(per.toString());
+                    if (listaEmpleadosTipo.isEmpty()) {
+                        System.out.println("No se encontraron empleados con el cargo: " + cargoEmpleado);
+                    }else{
+                        System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
+                        for (Empleado per : listaEmpleadosTipo) {
+                            System.out.println(per.toString());
+                        }
                     }
                     break;
                 case 6:
