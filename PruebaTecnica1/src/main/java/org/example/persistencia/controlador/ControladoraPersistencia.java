@@ -23,6 +23,7 @@ public class ControladoraPersistencia {
         if (empleado != null) {
             empleadoJPA.create(empleado); // Crear el empleado en la base de datos
             System.out.println("Empleado añadido correctamente");
+            System.out.println(empleado);
         } else {
             System.out.println("No se pudo añadir el empleado."); // Mensaje en caso de error
         }
@@ -92,6 +93,16 @@ public class ControladoraPersistencia {
         return empleadoPorId;
     }
 
+    //metodo para comprobar si ya existe un empleado con ese nombre y apellido
+    public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
+        List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
+        for (Empleado e : listaEmpleados) {
+            if (e.getNombre().equalsIgnoreCase(nombre) && e.getApellido().equalsIgnoreCase(apellido)) {
+                return true; // Encontrado un empleado con el mismo nombre y apellido
+            }
+        }
+        return false; // No hay duplicados
+    }
     //METODOS DE VALIDACION DE ENTRADA DE DATOS
 
     //Metodo para validar una entrada de tipo String
@@ -155,17 +166,6 @@ public class ControladoraPersistencia {
             }
         }
         return entrada;
-    }
-
-    //metodo para comprobar si ya existe un empleado con ese nombre y apellido
-    public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
-        List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
-        for (Empleado e : listaEmpleados) {
-            if (e.getNombre().equalsIgnoreCase(nombre) && e.getApellido().equalsIgnoreCase(apellido)) {
-                return true; // Encontrado un empleado con el mismo nombre y apellido
-            }
-        }
-        return false; // No hay duplicados
     }
 
     //Pedir datos al usuario con validaciones
