@@ -43,7 +43,7 @@ public class ControladoraPersistencia {
         return empleadoJPA.findEmpleadoEntities();
     }
 
-    public void modificarEmpleado (Empleado empleado) {
+    public void modificarEmpleado(Empleado empleado) {
 
         try {
             empleadoJPA.edit(empleado);
@@ -65,11 +65,22 @@ public class ControladoraPersistencia {
                     empleadosFiltrados.add(empleado);
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al obtener los empleados por tipo: " + e.getMessage());
             e.printStackTrace();
         }
         return empleadosFiltrados;
+    }
+
+    public Empleado obtenerEmpleadoPorId(Long id){
+
+        Empleado empleadoPorId = null;
+        try {
+            empleadoPorId = empleadoJPA.findEmpleado(id);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return empleadoPorId;
     }
 
     //METODOS DE VALIDACION DE ENTRADA DE DATOS
@@ -121,6 +132,7 @@ public class ControladoraPersistencia {
         }
         return fecha;
     }
+
     public Long validarEntradaLong(String mensaje) {
         Long entrada = 0L;
         boolean entradaValida = false;
@@ -135,6 +147,7 @@ public class ControladoraPersistencia {
         }
         return entrada;
     }
+
     //metodo para comprobar si ya existe un empleado con ese nombre y apellido
     public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
         List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
@@ -172,7 +185,6 @@ public class ControladoraPersistencia {
         // Crear y devolver el empleado con los datos ingresados
         return new Empleado(nombre, apellido, cargo, salario, fechaInicio);
     }
-
 
 
 }

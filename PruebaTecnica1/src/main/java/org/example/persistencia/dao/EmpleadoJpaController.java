@@ -45,7 +45,7 @@ public class EmpleadoJpaController {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Long id = empleado.getId();
-                if (findProyecto(id) == null) {
+                if (findEmpleado(id) == null) {
                     throw new NonexistentEntityException("El empleado con id " + id + " no existe.");
                 }
             }
@@ -102,7 +102,7 @@ public class EmpleadoJpaController {
         }
     }
 
-    public Empleado findProyecto(Long id) {
+    public Empleado findEmpleado(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Empleado.class, id);
@@ -111,7 +111,7 @@ public class EmpleadoJpaController {
         }
     }
 
-    public int getProyectoCount() {
+    public int getEmpleadoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
