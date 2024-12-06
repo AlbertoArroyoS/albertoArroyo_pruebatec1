@@ -87,7 +87,7 @@ public class Empleado implements Serializable {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return "Empleado{" +
+        return "Empleado: {" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

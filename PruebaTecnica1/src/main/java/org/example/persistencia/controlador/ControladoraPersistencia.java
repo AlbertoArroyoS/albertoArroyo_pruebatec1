@@ -29,13 +29,20 @@ public class ControladoraPersistencia {
     }
 
     public void borrarEmpleado() {
-        //Validación del id Long
+        // Validación del id como Long
         Long idEmpleado = validarEntradaLong("Introduzca id del empleado a borrar");
 
         try {
             empleadoJPA.destroy(idEmpleado);
+            System.out.println("El empleado con ID " + idEmpleado + " ha sido borrado exitosamente.");
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            // Mensaje al usuario en caso de que el ID no exista
+            System.out.println("Error: No se encontró un empleado con el ID " + idEmpleado + ". Por favor, verifique e intente nuevamente.");
+            //Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, "El empleado con ID " + idEmpleado + " no existe.", ex);
+        } catch (Exception ex) {
+            // Manejo genérico para cualquier otra excepción
+            System.out.println("Ocurrió un error inesperado al intentar borrar el empleado.");
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, "Error inesperado", ex);
         }
     }
 
@@ -63,7 +70,7 @@ public class ControladoraPersistencia {
 
             // Recorrer la lista de empleados y filtrar por el tipo
             for (Empleado empleado : listaEmpleados) {
-                if (empleado.getCargo() != null && empleado.getCargo().equals(tipo)) {
+                if (empleado.getCargo() != null && empleado.getCargo().equalsIgnoreCase(tipo)) {
                     empleadosFiltrados.add(empleado);
                 }
             }
