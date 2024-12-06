@@ -20,34 +20,30 @@ public class ControladoraPersistencia {
     Scanner leer = new Scanner(System.in);
 
 
-    public void crearEmpleado(Empleado empleado) {
+    public void crearEmpleado() {
         // Validación para el nombre
         String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");
 
         // Validación para el apellido
         String apellido = validacionEntradaTexto("Introduzca el apellido del empleado:");
 
-        // Validación para el cargo
-        String cargo = validacionEntradaTexto("Introduzca el cargo del empleado:");
+        if (existeEmpleadoConNombreYApellido(nombre, apellido)) {
+            System.out.println("Ya existe un empleado con el mismo nombre y apellido. No se puede dar de alta.");
+            return;
+        }else{
+            // Validación para el cargo
+            String cargo = validacionEntradaTexto("Introduzca el cargo del empleado:");
 
-        // Validación para el salario
-        Double salario = validarEntradaDecimal("Introduzca el salario del empleado:");
+            // Validación para el salario
+            Double salario = validarEntradaDecimal("Introduzca el salario del empleado:");
 
-        // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
-        Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
+            // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
+            Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
 
-        // Asignación de los valores al empleado
-        empleado.setNombre(nombre);
-        empleado.setApellido(apellido);
-        empleado.setCargo(cargo);
-        empleado.setSalario(salario);
-        empleado.setFechaInicio(fechaInicio);
+            // Asignación de los valores al empleado
+            empleadoJPA.create(new Empleado(nombre, apellido, cargo, salario, fechaInicio));
 
-
-
-
-        //**********************
-        empleadoJPA.create(empleado);
+        }
     }
 
     public void borrarEmpleado(Long id) {
