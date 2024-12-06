@@ -37,7 +37,6 @@ public class ControladoraPersistencia {
         Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
 
         // Asignación de los valores al empleado
-        empleado.setId(id);
         empleado.setNombre(nombre);
         empleado.setApellido(apellido);
         empleado.setCargo(cargo);
@@ -76,10 +75,10 @@ public class ControladoraPersistencia {
     public List<Empleado> traerEmpleadosPorTipo(String tipo) {
         List<Empleado> empleadosFiltrados = new ArrayList<>();
         try {
-            // Obtener todos los proyectos
+            // Obtener todos los empleados
             List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
 
-            // Recorrer la lista de proyectos y filtrar por el tipo
+            // Recorrer la lista de empleados y filtrar por el tipo
             for (Empleado empleado : listaEmpleados) {
                 if (empleado.getCargo() != null && empleado.getCargo().equals(tipo)) {
                     empleadosFiltrados.add(empleado);
@@ -140,6 +139,17 @@ public class ControladoraPersistencia {
             }
         }
         return fecha;
+    }
+
+    //metodo para comprobar si ya existe un empleado con ese nombre y apellido
+    public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
+        List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
+        for (Empleado e : listaEmpleados) {
+            if (e.getNombre().equals(nombre) && e.getApellido().equals(apellido)) {
+                return true; // Encontrado un empleado con el mismo nombre y apellido
+            }
+        }
+        return false; // No hay duplicados
     }
 
 
