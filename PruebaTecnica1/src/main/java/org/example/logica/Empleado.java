@@ -92,7 +92,7 @@ public class Empleado implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", cargo='" + cargo + '\'' +
-                ", salario=" + salario +
+                ", salario=" + salario +" €" +
                 ", fechaInicio=" + (fechaInicio != null ? sdf.format(fechaInicio) : null) +
                 '}';
     }
