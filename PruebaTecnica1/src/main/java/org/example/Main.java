@@ -208,7 +208,7 @@ public class Main {
         System.out.println("6. GUARDAR DATOS y volver al menu principal");
         System.out.println("7. Volver SIN GUARDAR al menu principal");
         System.out.println("----------------------------------------------------");
-        System.out.println("Introduzca una opción del 1 al 6");
+        System.out.println("Introduzca una opción del 1 al 7");
         System.out.println("----------------------------------------------------");
 
         try {
