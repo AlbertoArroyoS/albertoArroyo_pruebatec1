@@ -4,6 +4,7 @@ HACK A BOSS
 
 Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de Empleados con JPA
 
+Al iniciar el programa despliega un menú del opciones.
 
 0. **Menú de opciones inicial**
 
@@ -102,18 +103,7 @@ Método para comprobar si ya existe un usuario con ese nombre y apellido en la b
 ![image](https://github.com/user-attachments/assets/e3570ccd-d263-4b0b-9691-6d583914a124)
 
 Cuando se piden los datos se hace la comprobación y en caso de que exista no continua pidiendo los datos
-![image](https://github.com/user-attachments/assets/e3e56d97-4812-4c0e-9a02-0ad04d6af563)
+![image](https://github.com/user-attachments/assets/1eb610b4-fd9f-4f83-9a8f-08207e461cd5)
+![image](https://github.com/user-attachments/assets/9d8dbd38-59c4-415f-919d-df863159839f)
 
-## **Entregables**
 
-- **Código fuente** de la aplicación en un repositorio de control de versiones (GitHub).
-    
-    - Utilizar como formato de **nombre del repositori**o la siguiente combinación: apellido+nombre+_pruebatec1. Ej: **dePaulaLuisina_pruebatec1**
-        
-- Un informe o documentación breve que describa cómo ejecutar y probar la aplicación como así también los "SUPUESTOS" que pudieron ser considerados. Esto puede ser incluido en el archivo **README** de **GitHub**.
-    
-- El nombre de la base de datos debe ser **empleados**
-    
-- Archivo **.sql** de la base de datos
-    
-- Fecha de entrega máxima **Jueves dd/mm/yyyy** a las **xx hs (mediodía)**
