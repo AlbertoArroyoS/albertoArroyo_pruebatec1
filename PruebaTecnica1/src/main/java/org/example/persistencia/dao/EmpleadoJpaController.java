@@ -9,9 +9,8 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * Clase que controla la persistencia de los empleados comunicandose con la base de datos MySQL
+ * Clase que controla la persistencia de los empleados comunicándose con la base de datos MySQL
  *
- * @author Alberto Arroyo Santofimia
  */
 public class EmpleadoJpaController {
 
