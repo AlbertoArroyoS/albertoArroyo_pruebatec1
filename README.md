@@ -24,9 +24,18 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
 
 La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar, una vez elegido nos muestra los datos de ese usuario y muestra el menu de editar
 
+![image](https://github.com/user-attachments/assets/e9deab9c-f7c6-4513-895d-59cff2e0de73)
+![image](https://github.com/user-attachments/assets/de230cab-887f-4b5d-a555-d9f64d6621d1)
+![image](https://github.com/user-attachments/assets/b1095dfb-f5a1-4d56-bc65-c0ba860ec517)
+![image](https://github.com/user-attachments/assets/92aae99e-2105-4f5d-8c02-bb2073dd7ba0)
+![image](https://github.com/user-attachments/assets/bc5fe31e-8f13-49a8-8d38-b1a4f582aac3)
+![image](https://github.com/user-attachments/assets/df9a3d87-06e7-40fb-9ccf-39e94a189e51)
 
+Una vez que el usuario ha hecho las ediciones necesarias, tiene la opción de guardarlos en la base de datos y volver al menú principal o descartar todas las modificaciones y volver
 
-
+![image](https://github.com/user-attachments/assets/0410d98d-76be-46a6-994f-0f06ef9bb8c5)
+![image](https://github.com/user-attachments/assets/f2cf41ae-f419-4711-8473-4d09a3d541a7)
+![image](https://github.com/user-attachments/assets/f3480132-2907-423b-9347-60488a31c37c)
 
 
 En caso de que se introduzca un Id de empleado que no exista no notifica y vuelve al menú principal
