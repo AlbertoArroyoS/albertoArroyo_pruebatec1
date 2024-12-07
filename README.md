@@ -20,24 +20,32 @@ Al iniciar el programa despliega un menú del opciones.
 2. **Listar empleados:** La aplicación permite ver la lista de todos los empleados en la base de datos o notifica que está vacía.
 
 ![image](https://github.com/user-attachments/assets/dfbeb56e-b4e6-4178-a597-d6b59384c341)
+
 ![image](https://github.com/user-attachments/assets/0f5f4a4b-6f59-4993-a902-3b15554819aa)
 
     
-3. **Actualizar información de un empleado:** Los usuarios deben poder modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
+3. **Actualizar información de un empleado:** Los usuarios pueden modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
 
 La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar, una vez elegido nos muestra los datos de ese usuario y muestra el menu de editar
 
 ![image](https://github.com/user-attachments/assets/e9deab9c-f7c6-4513-895d-59cff2e0de73)
+
 ![image](https://github.com/user-attachments/assets/de230cab-887f-4b5d-a555-d9f64d6621d1)
+
 ![image](https://github.com/user-attachments/assets/b1095dfb-f5a1-4d56-bc65-c0ba860ec517)
+
 ![image](https://github.com/user-attachments/assets/92aae99e-2105-4f5d-8c02-bb2073dd7ba0)
+
 ![image](https://github.com/user-attachments/assets/bc5fe31e-8f13-49a8-8d38-b1a4f582aac3)
+
 ![image](https://github.com/user-attachments/assets/df9a3d87-06e7-40fb-9ccf-39e94a189e51)
 
 Una vez que el usuario ha hecho las ediciones necesarias, tiene la opción de guardarlos en la base de datos y volver al menú principal o descartar todas las modificaciones y volver
 
 ![image](https://github.com/user-attachments/assets/0410d98d-76be-46a6-994f-0f06ef9bb8c5)
+
 ![image](https://github.com/user-attachments/assets/f2cf41ae-f419-4711-8473-4d09a3d541a7)
+
 ![image](https://github.com/user-attachments/assets/f3480132-2907-423b-9347-60488a31c37c)
 
 
@@ -70,13 +78,18 @@ En caso de que no exista el Id lo notifica por pantalla
 
 En los menús de opciones no se pueden introducir ni valores fuera de rando ni caracteres no permitidos
 ![image](https://github.com/user-attachments/assets/9baee02a-fade-424d-8ba0-eeaeab9fc7aa)
+
 ![image](https://github.com/user-attachments/assets/932b692e-b1be-417a-a552-b1b523a14110)
 
 
 Metodos de validacion para entrada de datos de tipo Long, String, Double y Date. No se pueden introducir campos vacios ni contener espacios en blanco, ni caracteres no permitidos.
+
 ![image](https://github.com/user-attachments/assets/35aaab29-55ef-4bd8-8405-c98382e55ab4)
+
 ![image](https://github.com/user-attachments/assets/580e19d5-75fb-4df3-baf7-be53981c3f43)
+
 ![image](https://github.com/user-attachments/assets/b578eeec-6575-4fc3-bf17-164591deaa73)
+
 ![image](https://github.com/user-attachments/assets/3e05f514-70b3-438f-bab1-620754ec3cb9)
 
     
@@ -103,7 +116,9 @@ Método para comprobar si ya existe un usuario con ese nombre y apellido en la b
 ![image](https://github.com/user-attachments/assets/e3570ccd-d263-4b0b-9691-6d583914a124)
 
 Cuando se piden los datos se hace la comprobación y en caso de que exista no continua pidiendo los datos
+
 ![image](https://github.com/user-attachments/assets/1eb610b4-fd9f-4f83-9a8f-08207e461cd5)
+
 ![image](https://github.com/user-attachments/assets/9d8dbd38-59c4-415f-919d-df863159839f)
 
 
