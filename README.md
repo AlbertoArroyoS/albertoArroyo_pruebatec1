@@ -23,7 +23,10 @@ Al iniciar el programa despliega un menú del opciones.
 
 ![image](https://github.com/user-attachments/assets/0f5f4a4b-6f59-4993-a902-3b15554819aa)
 
-    
+Si la base de datos está vacía
+
+![image](https://github.com/user-attachments/assets/4964883e-33fd-4324-927d-281c3c1f8f15)
+
 3. **Actualizar información de un empleado:** Los usuarios pueden modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
 
 La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar, una vez elegido nos muestra los datos de ese usuario y muestra el menu de editar
@@ -120,5 +123,17 @@ Cuando se piden los datos se hace la comprobación y en caso de que exista no co
 ![image](https://github.com/user-attachments/assets/1eb610b4-fd9f-4f83-9a8f-08207e461cd5)
 
 ![image](https://github.com/user-attachments/assets/9d8dbd38-59c4-415f-919d-df863159839f)
+
+Búsquedas que no existen:
+
+![image](https://github.com/user-attachments/assets/578509ee-4d81-4a8f-ab0f-af9b2169e2f3)
+
+![image](https://github.com/user-attachments/assets/287ed2be-724a-4183-b636-6d9ff6781d55)
+
+![image](https://github.com/user-attachments/assets/481c184e-5979-488d-a3b4-c4f3845db58d)
+
+
+
+
 
 
