@@ -46,6 +46,7 @@ En caso de que se introduzca un Id de empleado que no exista, lo notifica y vuel
 
     
 4. **Eliminar un empleado:** La aplicación debe permitir eliminar un empleado de la base de datos.
+
 ![image](https://github.com/user-attachments/assets/91d228fb-4b4d-4fc4-8dc7-d22eb4bb42fb)
 
 Compración de si se ha borrado en la base de datos
@@ -57,17 +58,30 @@ En caso de que no exista el Id lo notifica por pantalla
 ![image](https://github.com/user-attachments/assets/204e8f50-beea-457d-a04d-4de66c5ec394)
 
 6. **Buscar empleados por cargo:** Los usuarios deben poder buscar empleados por su cargo y ver una lista de los empleados que tienen ese cargo.
-    
 
+![image](https://github.com/user-attachments/assets/d085784e-67aa-48fa-b8a1-ff5e573daee4)
+    
 ## **Requisitos técnicos:**
 
-1. Utiliza **Java** para el desarrollo de la aplicación.
+1. Se ha utilizado **Java** para el desarrollo de la aplicación.
     
-2. Debes utilizar **estructuras de control** para la validación de datos de entrada, como asegurarte de que los campos obligatorios no estén vacíos (obligatorio) y que los valores sean válidos (opcional).
+3. **Estructuras de control** para la validación de datos de entrada, como asegurarte de que los campos obligatorios no estén vacíos (obligatorio) y que los valores sean válidos.
+
+En los menús de opciones no se pueden introducir ni valores fuera de rando ni caracteres no permitidos
+![image](https://github.com/user-attachments/assets/9baee02a-fade-424d-8ba0-eeaeab9fc7aa)
+![image](https://github.com/user-attachments/assets/932b692e-b1be-417a-a552-b1b523a14110)
+
+
+Metodos de validacion para entrada de datos de tipo Long, String, Double y Date. No se pueden introducir campos vacios ni contener espacios en blanco, ni caracteres no permitidos.
+![image](https://github.com/user-attachments/assets/35aaab29-55ef-4bd8-8405-c98382e55ab4)
+![image](https://github.com/user-attachments/assets/580e19d5-75fb-4df3-baf7-be53981c3f43)
+![image](https://github.com/user-attachments/assets/b578eeec-6575-4fc3-bf17-164591deaa73)
+
+
     
-3. La aplicación debe utilizar **JPA** para acceder a la **base de datos**. Asegúrate de configurar una fuente de datos y una entidad "Empleado" con las propiedades necesarias.
+5. La aplicación debe utilizar **JPA** para acceder a la **base de datos**. Asegúrate de configurar una fuente de datos y una entidad "Empleado" con las propiedades necesarias.
     
-4. Utiliza **colecciones** para gestionar los datos antes de interactuar con la base de datos.
+6. Utiliza **colecciones** para gestionar los datos antes de interactuar con la base de datos.
     
 
 ## **EXTRA**
