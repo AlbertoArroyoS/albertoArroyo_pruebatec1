@@ -22,9 +22,18 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
     
 3. **Actualizar información de un empleado:** Los usuarios deben poder modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
 
-La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar
+La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar, una vez elegido nos muestra los datos de ese usuario y muestra el menu de editar
 
-![image](https://github.com/user-attachments/assets/ad4d2655-0c27-4d44-9c31-84d7f1a3fc36)
+![image](https://github.com/user-attachments/assets/36dcd6d1-99a4-4e80-bedd-4433b0b4e441)
+![image](https://github.com/user-attachments/assets/51f9a953-9f37-446a-983e-acd0779d608e)
+![image](https://github.com/user-attachments/assets/4f8821f1-fdf2-433d-aa3c-d0c66c696179)
+
+
+
+
+En caso de que se introduzca un Id de empleado que no exista no notifica y vuelve al menú principal
+
+![image](https://github.com/user-attachments/assets/f78292ec-2b7a-4ded-bf08-71f166b6a52d)
 
     
 4. **Eliminar un empleado:** La aplicación debe permitir eliminar un empleado de la base de datos.
