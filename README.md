@@ -9,8 +9,10 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
 
 ![image](https://github.com/user-attachments/assets/c5d438b0-a0cd-4e8b-9711-a58e9e784dfb)
 
-1. **Agregar un nuevo empleado:** Los usuarios pueden un nuevo empleado, incluyendo nombre, apellido, cargo, salario y fecha de inicio.
-    
+1. **Agregar un nuevo empleado:** Los usuarios pueden añadir un nuevo empleado, incluyendo nombre, apellido, cargo, salario y fecha de inicio.
+
+![image](https://github.com/user-attachments/assets/db8e1385-dbce-4a8f-b73e-ab7e079c48dc)
+ 
 2. **Listar empleados:** La aplicación debe permitir la visualización de la lista de todos los empleados en la base de datos.
     
 3. **Actualizar información de un empleado:** Los usuarios deben poder modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
