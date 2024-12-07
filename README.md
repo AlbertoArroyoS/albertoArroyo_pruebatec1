@@ -76,7 +76,7 @@ Metodos de validacion para entrada de datos de tipo Long, String, Double y Date.
 ![image](https://github.com/user-attachments/assets/35aaab29-55ef-4bd8-8405-c98382e55ab4)
 ![image](https://github.com/user-attachments/assets/580e19d5-75fb-4df3-baf7-be53981c3f43)
 ![image](https://github.com/user-attachments/assets/b578eeec-6575-4fc3-bf17-164591deaa73)
-
+![image](https://github.com/user-attachments/assets/3e05f514-70b3-438f-bab1-620754ec3cb9)
 
     
 5. La aplicación debe utilizar **JPA** para acceder a la **base de datos**. Asegúrate de configurar una fuente de datos y una entidad "Empleado" con las propiedades necesarias.
