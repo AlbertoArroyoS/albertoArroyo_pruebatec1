@@ -17,7 +17,7 @@ public class Main {
 
     private static Scanner leer;
 
-    //Para poder leer las opciones del menu	que estan en un metodo estatico
+    //Para poder leer las opciones del menu	que están en un metodo estatico
     static {
         leer = new Scanner(System.in);
     }
