@@ -7,6 +7,7 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
 
 0. **Menú de opciones inicial**
 
+![image](https://github.com/user-attachments/assets/c5d438b0-a0cd-4e8b-9711-a58e9e784dfb)
 
 1. **Agregar un nuevo empleado:** Los usuarios pueden un nuevo empleado, incluyendo nombre, apellido, cargo, salario y fecha de inicio.
     
