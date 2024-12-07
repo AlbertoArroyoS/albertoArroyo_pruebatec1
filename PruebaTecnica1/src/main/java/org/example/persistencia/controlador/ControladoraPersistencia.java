@@ -13,12 +13,22 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase ControladoraPersistencia
+ *
+ * @author Alberto Arroyo Santofimia
+ */
 public class ControladoraPersistencia {
 
     EmpleadoJpaController empleadoJPA = new EmpleadoJpaController();
 
     Scanner leer = new Scanner(System.in);
 
+    /**
+     * Método para crear un empleado
+     *
+     * @param empleado que representa el empleado a dar de alta
+     */
     public void crearEmpleado(Empleado empleado) {
         if (empleado != null) {
             empleadoJPA.create(empleado); // Crear el empleado en la base de datos
@@ -29,6 +39,9 @@ public class ControladoraPersistencia {
         }
     }
 
+    /**
+     * Método para borrar un empleado
+     */
     public void borrarEmpleado() {
         // Validación del id como Long
         Long idEmpleado = validarEntradaLong("Introduzca id del empleado a borrar");
@@ -47,10 +60,20 @@ public class ControladoraPersistencia {
         }
     }
 
+    /**
+     * Método para traer todos los empleados
+     *
+     * @return lista de empleados
+     */
     public List<Empleado> traerEmpleado() {
         return empleadoJPA.findEmpleadoEntities();
     }
 
+    /**
+     * Método para modificar un empleado
+     *
+     * @param empleado que representa el empleado a modificar
+     */
     public void modificarEmpleado(Empleado empleado) {
 
         try {
@@ -62,7 +85,12 @@ public class ControladoraPersistencia {
         }
     }
 
-    // Metodo adicional para obtener proyectos por tipo
+    /**
+     * Método para traer empleados por tipo
+     *
+     * @param tipo que representa el tipo de empleado a filtrar
+     * @return lista de empleados filtrados por tipo
+     */
     public List<Empleado> traerEmpleadosPorTipo(String tipo) {
         List<Empleado> empleadosFiltrados = new ArrayList<>();
         try {
@@ -82,7 +110,13 @@ public class ControladoraPersistencia {
         return empleadosFiltrados;
     }
 
-    public Empleado obtenerEmpleadoPorId(Long id){
+    /**
+     * Método para obtener un empleado por su ID
+     *
+     * @param id que representa el ID del empleado a buscar
+     * @return empleado encontrado
+     */
+    public Empleado obtenerEmpleadoPorId(Long id) {
 
         Empleado empleadoPorId = null;
         try {
@@ -93,7 +127,14 @@ public class ControladoraPersistencia {
         return empleadoPorId;
     }
 
-    //metodo para comprobar si ya existe un empleado con ese nombre y apellido
+    /**
+     * Método para comprobar si ya existe un empleado con el mismo nombre y apellido.
+     * Los datos los recibimos en una ArrayList de empleados y comprobamos si ya existe un empleado con el mismo nombre y apellido.
+     *
+     * @param nombre   que representa el nombre del empleado
+     * @param apellido que representa el apellido del empleado
+     * @return true si ya existe un empleado con el mismo nombre y apellido, false si no existe
+     */
     public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
         List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
         for (Empleado e : listaEmpleados) {
@@ -103,9 +144,14 @@ public class ControladoraPersistencia {
         }
         return false; // No hay duplicados
     }
-    //METODOS DE VALIDACION DE ENTRADA DE DATOS
+    //******* METODOS DE VALIDACION DE ENTRADA DE DATOS ***************
 
-    //Metodo para validar una entrada de tipo String
+    /**
+     * Método para validar una entrada de tipo String, no puede estar vacía ni contener solo espacios en blanco
+     *
+     * @param mensaje que representa el mensaje a mostrar al usuario
+     * @return entrada de tipo String
+     */
     public String validacionEntradaTexto(String mensaje) {
         String entrada = "";
         do {
@@ -118,7 +164,12 @@ public class ControladoraPersistencia {
         return entrada;
     }
 
-    // Metodo para validar una entrada decimal (como el salario)
+    /**
+     * Método para validar una entrada de tipo Double, solo se aceptan valores numéricos
+     *
+     * @param mensaje que representa el mensaje a mostrar al usuario
+     * @return entrada de tipo Double
+     */
     public Double validarEntradaDecimal(String mensaje) {
         Double entrada = 0.0;
         boolean entradaValida = false;
@@ -134,7 +185,12 @@ public class ControladoraPersistencia {
         return entrada;
     }
 
-    // Metodo para validar una entrada de fecha (Formato: dd/mm/yyyy)
+    /**
+     * Método para validar una entrada de tipo Date, solo se aceptan valores en el formato dd/mm/yyyy
+     *
+     * @param mensaje que representa el mensaje a mostrar al usuario
+     * @return entrada de tipo Date
+     */
     public Date obtenerEntradaFecha(String mensaje) {
         Date fecha = null;
         boolean entradaValida = false;
@@ -153,6 +209,12 @@ public class ControladoraPersistencia {
         return fecha;
     }
 
+    /**
+     * Método para validar una entrada de tipo Long, solo se aceptan valores numéricos enteros
+     *
+     * @param mensaje que representa el mensaje a mostrar al usuario
+     * @return entrada de tipo Long
+     */
     public Long validarEntradaLong(String mensaje) {
         Long entrada = 0L;
         boolean entradaValida = false;
@@ -168,7 +230,11 @@ public class ControladoraPersistencia {
         return entrada;
     }
 
-    //Pedir datos al usuario con validaciones
+    /**
+     * Método para pedir los datos de un empleado al usuario, con validaciones de entrada
+     *
+     * @return empleado con los datos ingresados
+     */
     public Empleado pedirDatosEmpleado() {
         // Validación para el nombre
         String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");

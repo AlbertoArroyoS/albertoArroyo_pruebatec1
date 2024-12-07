@@ -2,11 +2,17 @@ package org.example.logica;
 /**
  *
  */
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Entidad Empleado que representa a un empleado de la empresa
+ *
+ * @Author Alberto Arroyo Santofimia
+ */
 @Entity
 public class Empleado implements Serializable {
     @Id
@@ -34,6 +40,7 @@ public class Empleado implements Serializable {
         this.salario = salario;
         this.fechaInicio = fechaInicio;
     }
+
     //Getters y Setters
     public Long getId() {
         return id;
@@ -92,7 +99,7 @@ public class Empleado implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", cargo='" + cargo + '\'' +
-                ", salario=" + salario +" €" +
+                ", salario=" + salario + " €" +
                 ", fechaInicio=" + (fechaInicio != null ? sdf.format(fechaInicio) : null) +
                 '}';
     }

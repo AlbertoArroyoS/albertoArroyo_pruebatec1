@@ -7,6 +7,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase Main que contiene el método main para ejecutar la aplicación.
+ * Se encarga de mostrar un menú de opciones para gestionar empleados.
+ *
+ * @author Alberto Arroyo Santofimia
+ */
 public class Main {
 
     private static Scanner leer;
@@ -30,16 +36,16 @@ public class Main {
             }
             switch (opcion) {
                 case 1:
-                    // Lógica para crear empleado
+                    // Opcion para Agregar un nuevo empleado
                     Empleado empleado = controlPersis.pedirDatosEmpleado();
                     controlPersis.crearEmpleado(empleado);
                     break;
                 case 2:
-                    // Lógica para Listar todos los empleados
+                    // Opción para Listar todos los empleados
                     List<Empleado> listaEmpleados = controlPersis.traerEmpleado();
                     if (listaEmpleados.isEmpty()) {
                         System.out.println("No hay empleados registrados.");
-                    }else {
+                    } else {
                         System.out.println("----Lista de empleados----");
                         for (Empleado per : listaEmpleados) {
                             System.out.println(per.toString());
@@ -47,14 +53,14 @@ public class Main {
                     }
                     break;
                 case 3:
-                    // Lógica para Actualizar información de un empleado
+                    // Opcion para Editar un empleado
                     Long idEmpleado = controlPersis.validarEntradaLong("Introduzca id del empleado a editar");
                     Empleado empleadoPorId = controlPersis.obtenerEmpleadoPorId(idEmpleado);
                     System.out.println("Datos del empleado con id: " + idEmpleado);
                     System.out.println(empleadoPorId);
                     boolean continuarEditando = true;
                     do {
-                        //Carga el menu inicial y se recupera la opción elegida
+                        //Carga el menu para Editar y se recupera la opción elegida
                         int opcionEditar = menuEditar();
                         //Validacion para que se repita el menu en caso de que la opción esté fuera de rango 1-6 de tipo entero
                         while (opcionEditar < 1 || opcionEditar > 7) {
@@ -62,36 +68,36 @@ public class Main {
                         }
                         switch (opcionEditar) {
                             case 1:
-                                // Lógica para editar nombre
+                                // Opción para Editar nombre del empleado
                                 String nombre = controlPersis.validacionEntradaTexto("Introduzca el nombre del empleado:");
                                 empleadoPorId.setNombre(nombre);
                                 break;
                             case 2:
-                                // Lógica para Listar todos los empleados
+                                // Opción para Editar apellido del empleado
                                 String apellido = controlPersis.validacionEntradaTexto("Introduzca el apellido del empleado:");
                                 empleadoPorId.setApellido(apellido);
 
                                 break;
                             case 3:
-                                // Lógica para Actualizar información de un empleado
+                                // Opcción para Editar cargo del empleado
                                 String cargo = controlPersis.validacionEntradaTexto("Introduzca el cargo del empleado:");
                                 empleadoPorId.setCargo(cargo);
 
                                 break;
                             case 4:
-                                // Lógica para Eliminar un empleado
+                                // Opcción para Editar salario del empleado
                                 Double salario = controlPersis.validarEntradaDecimal("Introduzca el salario del empleado:");
                                 empleadoPorId.setSalario(salario);
 
                                 break;
                             case 5:
-                                // Lógica para Buscar empleados por cargo
+                                // Opcción para Editar fecha de inicio del empleado
                                 Date fechaInicio = controlPersis.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
                                 empleadoPorId.setFechaInicio(fechaInicio);
 
                                 break;
                             case 6:
-                                // Lógica para Guardar datos y volver al menu principal
+                                // Opción para Guardar los cambios y volver al menú principal
                                 System.out.println("Guardando información...");
                                 if (empleadoPorId != null) {
                                     controlPersis.modificarEmpleado(empleadoPorId);
@@ -99,7 +105,7 @@ public class Main {
                                 continuarEditando = false;
                                 break;
                             case 7:
-                                // Volver sin guardar
+                                // Opción para Volver sin guardar los cambios
                                 System.out.println("Volver sin guardar...");
                                 continuarEditando = false;
                                 break;
@@ -110,16 +116,16 @@ public class Main {
                     } while (continuarEditando);
                     break;
                 case 4:
-                    // Lógica para Eliminar un empleado
+                    // Opción para Eliminar un empleado
                     controlPersis.borrarEmpleado();
                     break;
                 case 5:
-                    // Lógica para Buscar empleados por cargo
+                    // Opcción para Buscar empleados por cargo
                     String cargoEmpleado = controlPersis.validacionEntradaTexto("Introduzca el cargo de los empleados a buscar:");
                     List<Empleado> listaEmpleadosTipo = controlPersis.traerEmpleadosPorTipo(cargoEmpleado);
                     if (listaEmpleadosTipo.isEmpty()) {
                         System.out.println("No se encontraron empleados con el cargo: " + cargoEmpleado);
-                    }else{
+                    } else {
                         System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
                         for (Empleado per : listaEmpleadosTipo) {
                             System.out.println(per.toString());
