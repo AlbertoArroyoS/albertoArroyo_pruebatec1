@@ -83,7 +83,7 @@ Metodos de validacion para entrada de datos de tipo Long, String, Double y Date.
 
 ![image](https://github.com/user-attachments/assets/f1a3b745-eb04-480d-b048-ea3d5f4c92b1)
     
-6. List utiliza para gestionar los datos antes de interactuar con la base de datos.
+6. List utilizadas para gestionar los datos antes de interactuar con la base de datos.
 
 ![image](https://github.com/user-attachments/assets/f7db190c-5028-4b0d-bebb-023e3b401d3b)
 
@@ -96,7 +96,13 @@ Metodos de validacion para entrada de datos de tipo Long, String, Double y Date.
 En caso de que sepas manejar excepciones te proponemos el siguiente punto extra:
 
 1. La aplicación debe ser capaz de manejar errores y excepciones de manera apropiada, como la gestión de registros duplicados o la búsqueda de empleados que no existen, etc.
-    
+
+Método para comprobar si ya existe un usuario con ese nombre y apellido en la base de datos.
+
+![image](https://github.com/user-attachments/assets/e3570ccd-d263-4b0b-9691-6d583914a124)
+
+Cuando se piden los datos se hace la comprobación y en caso de que exista no continua pidiendo los datos
+![image](https://github.com/user-attachments/assets/e3e56d97-4812-4c0e-9a02-0ad04d6af563)
 
 ## **Entregables**
 
