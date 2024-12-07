@@ -56,64 +56,70 @@ public class Main {
                     // Opcion para Editar un empleado
                     Long idEmpleado = controlPersis.validarEntradaLong("Introduzca id del empleado a editar");
                     Empleado empleadoPorId = controlPersis.obtenerEmpleadoPorId(idEmpleado);
-                    System.out.println("Datos del empleado con id: " + idEmpleado);
-                    System.out.println(empleadoPorId);
-                    boolean continuarEditando = true;
-                    do {
-                        //Carga el menu para Editar y se recupera la opción elegida
-                        int opcionEditar = menuEditar();
-                        //Validacion para que se repita el menu en caso de que la opción esté fuera de rango 1-6 de tipo entero
-                        while (opcionEditar < 1 || opcionEditar > 7) {
-                            opcion = menu();
-                        }
-                        switch (opcionEditar) {
-                            case 1:
-                                // Opción para Editar nombre del empleado
-                                String nombre = controlPersis.validacionEntradaTexto("Introduzca el nombre del empleado:");
-                                empleadoPorId.setNombre(nombre);
-                                break;
-                            case 2:
-                                // Opción para Editar apellido del empleado
-                                String apellido = controlPersis.validacionEntradaTexto("Introduzca el apellido del empleado:");
-                                empleadoPorId.setApellido(apellido);
+                    if (empleadoPorId == null) {
+                        System.out.println("No se encontró ningún empleado con el id: " + idEmpleado);
+                        break;
+                    } else {
+                        System.out.println("Datos del empleado con id: " + idEmpleado);
+                        System.out.println(empleadoPorId);
+                        boolean continuarEditando = true;
+                        do {
+                            //Carga el menu para Editar y se recupera la opción elegida
+                            int opcionEditar = menuEditar();
+                            //Validacion para que se repita el menu en caso de que la opción esté fuera de rango 1-6 de tipo entero
+                            while (opcionEditar < 1 || opcionEditar > 7) {
+                                opcion = menu();
+                            }
+                            switch (opcionEditar) {
+                                case 1:
+                                    // Opción para Editar nombre del empleado
+                                    String nombre = controlPersis.validacionEntradaTexto("Introduzca el nombre del empleado:");
+                                    empleadoPorId.setNombre(nombre);
+                                    break;
+                                case 2:
+                                    // Opción para Editar apellido del empleado
+                                    String apellido = controlPersis.validacionEntradaTexto("Introduzca el apellido del empleado:");
+                                    empleadoPorId.setApellido(apellido);
 
-                                break;
-                            case 3:
-                                // Opcción para Editar cargo del empleado
-                                String cargo = controlPersis.validacionEntradaTexto("Introduzca el cargo del empleado:");
-                                empleadoPorId.setCargo(cargo);
+                                    break;
+                                case 3:
+                                    // Opcción para Editar cargo del empleado
+                                    String cargo = controlPersis.validacionEntradaTexto("Introduzca el cargo del empleado:");
+                                    empleadoPorId.setCargo(cargo);
 
-                                break;
-                            case 4:
-                                // Opcción para Editar salario del empleado
-                                Double salario = controlPersis.validarEntradaDecimal("Introduzca el salario del empleado:");
-                                empleadoPorId.setSalario(salario);
+                                    break;
+                                case 4:
+                                    // Opcción para Editar salario del empleado
+                                    Double salario = controlPersis.validarEntradaDecimal("Introduzca el salario del empleado:");
+                                    empleadoPorId.setSalario(salario);
 
-                                break;
-                            case 5:
-                                // Opcción para Editar fecha de inicio del empleado
-                                Date fechaInicio = controlPersis.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
-                                empleadoPorId.setFechaInicio(fechaInicio);
+                                    break;
+                                case 5:
+                                    // Opcción para Editar fecha de inicio del empleado
+                                    Date fechaInicio = controlPersis.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
+                                    empleadoPorId.setFechaInicio(fechaInicio);
 
-                                break;
-                            case 6:
-                                // Opción para Guardar los cambios y volver al menú principal
-                                System.out.println("Guardando información...");
-                                if (empleadoPorId != null) {
-                                    controlPersis.modificarEmpleado(empleadoPorId);
-                                }
-                                continuarEditando = false;
-                                break;
-                            case 7:
-                                // Opción para Volver sin guardar los cambios
-                                System.out.println("Volver sin guardar...");
-                                continuarEditando = false;
-                                break;
-                            default:
-                                System.out.println("Opción no válida, intente de nuevo.");
-                                break;
-                        }
-                    } while (continuarEditando);
+                                    break;
+                                case 6:
+                                    // Opción para Guardar los cambios y volver al menú principal
+                                    System.out.println("Guardando información...");
+                                    if (empleadoPorId != null) {
+                                        controlPersis.modificarEmpleado(empleadoPorId);
+                                    }
+                                    continuarEditando = false;
+                                    break;
+                                case 7:
+                                    // Opción para Volver sin guardar los cambios
+                                    System.out.println("Volver sin guardar...");
+                                    continuarEditando = false;
+                                    break;
+                                default:
+                                    System.out.println("Opción no válida, intente de nuevo.");
+                                    break;
+                            }
+                        } while (continuarEditando);
+
+                    }
                     break;
                 case 4:
                     // Opción para Eliminar un empleado
