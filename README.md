@@ -17,9 +17,10 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
 
  
 2. **Listar empleados:** La aplicación permite ver la lista de todos los empleados en la base de datos o notifica que está vacía.
-![image](https://github.com/user-attachments/assets/dfbeb56e-b4e6-4178-a597-d6b59384c341)
 
-![image](https://github.com/user-attachments/assets/424dbdc2-2def-4ecd-8fb0-df71ada90161)
+![image](https://github.com/user-attachments/assets/dfbeb56e-b4e6-4178-a597-d6b59384c341)
+![image](https://github.com/user-attachments/assets/0f5f4a4b-6f59-4993-a902-3b15554819aa)
+
     
 3. **Actualizar información de un empleado:** Los usuarios deben poder modificar la información de un empleado existente (nombre, apellido, cargo, salario o fecha de inicio).
 
