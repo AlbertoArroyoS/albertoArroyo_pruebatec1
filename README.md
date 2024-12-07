@@ -24,9 +24,7 @@ Prueba Técnica 1 - Java Básico. Desarrollo de una Aplicación de Gestión de E
 
 La aplicación nos pedirá en primer lugar el Id del empleado que se quiere editar, una vez elegido nos muestra los datos de ese usuario y muestra el menu de editar
 
-![image](https://github.com/user-attachments/assets/36dcd6d1-99a4-4e80-bedd-4433b0b4e441)
-![image](https://github.com/user-attachments/assets/51f9a953-9f37-446a-983e-acd0779d608e)
-![image](https://github.com/user-attachments/assets/4f8821f1-fdf2-433d-aa3c-d0c66c696179)
+
 
 
 
