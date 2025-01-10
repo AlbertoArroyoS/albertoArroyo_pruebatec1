@@ -23,7 +23,6 @@ public class ControladoraPersistencia {
     EmpleadoJpaController empleadoJPA = new EmpleadoJpaController();
     Validaciones validaciones = new Validaciones();
 
-    Scanner leer = new Scanner(System.in);
 
     /**
      * Método para crear un empleado
