@@ -1,7 +1,7 @@
 package org.example.persistencia.controlador;
 
 import org.example.logica.Empleado;
-import org.example.logica.Validaciones;
+import org.example.utils.Validaciones;
 import org.example.persistencia.dao.EmpleadoJpaController;
 import org.example.persistencia.exceptions.NonexistentEntityException;
 
@@ -9,7 +9,6 @@ import org.example.persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
