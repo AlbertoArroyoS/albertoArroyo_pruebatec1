@@ -14,6 +14,55 @@ public class Controladora {
     private static final Scanner leer = new Scanner(System.in);
     Validaciones validaciones = new Validaciones();
 
+
+    public void agregarEmpleado() {
+        Empleado empleado = controlPersis.pedirDatosEmpleado();
+        controlPersis.crearEmpleado(empleado);
+    }
+
+    public void editarEmpleado() {
+        Long idEmpleado = validaciones.validarEntradaLong("Introduzca id del empleado a editar");
+        Empleado empleadoPorId = controlPersis.obtenerEmpleadoPorId(idEmpleado);
+        if (empleadoPorId == null) {
+            System.out.println("No se encontró ningún empleado con el id: " + idEmpleado);
+        } else {
+            System.out.println("Datos del empleado con id: " + idEmpleado);
+            System.out.println(empleadoPorId);
+            boolean continuarEditando = true;
+            do {
+                continuarEditando = opcionEditar(empleadoPorId);
+            } while (continuarEditando);
+        }
+    }
+    public void opcionListarEmpleados() {
+        List<Empleado> listaEmpleados = controlPersis.traerEmpleado();
+        if (listaEmpleados.isEmpty()) {
+            System.out.println("No hay empleados registrados.");
+        } else {
+            System.out.println("----Lista de empleados----");
+            for (Empleado per : listaEmpleados) {
+                System.out.println(per.toString());
+            }
+        }
+    }
+    public void buscarEmpleadosPorCargo (){
+        String cargoEmpleado = validaciones.validacionEntradaTexto("Introduzca el cargo de los empleados a buscar:");
+        List<Empleado> listaEmpleadosTipo = controlPersis.traerEmpleadosPorTipo(cargoEmpleado);
+        if (listaEmpleadosTipo.isEmpty()) {
+            System.out.println("No se encontraron empleados con el cargo: " + cargoEmpleado);
+        } else {
+            System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
+            for (Empleado per : listaEmpleadosTipo) {
+                System.out.println(per.toString());
+            }
+        }
+    }
+    public void borrarEmpleado() {
+        controlPersis.borrarEmpleado();
+    }
+
+    // **********************
+
     /**
      * Método para mostrar el menú principal de la aplicación y gestionar las opciones elegidas por el usuario.
      *
@@ -38,7 +87,7 @@ public class Controladora {
                 editarEmpleado();
                 break;
             case 4:
-                controlPersis.borrarEmpleado();
+                borrarEmpleado();
                 break;
             case 5:
                 buscarEmpleadosPorCargo();
@@ -96,7 +145,7 @@ public class Controladora {
                 // Opción para Guardar los cambios y volver al menú principal
                 System.out.println("Guardando información...");
                 if (empleadoPorId != null) {
-                    controlPersis.modificarEmpleado(empleadoPorId);
+                    editarEmpleado();
                 }
                 continuarEditando = false;
                 break;
@@ -188,50 +237,5 @@ public class Controladora {
 
         return opcion;
     }
-    public void agregarEmpleado() {
-        Empleado empleado = controlPersis.pedirDatosEmpleado();
-        controlPersis.crearEmpleado(empleado);
-    }
-
-    public void editarEmpleado() {
-        Long idEmpleado = validaciones.validarEntradaLong("Introduzca id del empleado a editar");
-        Empleado empleadoPorId = controlPersis.obtenerEmpleadoPorId(idEmpleado);
-        if (empleadoPorId == null) {
-            System.out.println("No se encontró ningún empleado con el id: " + idEmpleado);
-        } else {
-            System.out.println("Datos del empleado con id: " + idEmpleado);
-            System.out.println(empleadoPorId);
-            boolean continuarEditando = true;
-            do {
-                continuarEditando = opcionEditar(empleadoPorId);
-            } while (continuarEditando);
-        }
-    }
-    public void opcionListarEmpleados() {
-        List<Empleado> listaEmpleados = controlPersis.traerEmpleado();
-        if (listaEmpleados.isEmpty()) {
-            System.out.println("No hay empleados registrados.");
-        } else {
-            System.out.println("----Lista de empleados----");
-            for (Empleado per : listaEmpleados) {
-                System.out.println(per.toString());
-            }
-        }
-    }
-    public void buscarEmpleadosPorCargo (){
-        String cargoEmpleado = validaciones.validacionEntradaTexto("Introduzca el cargo de los empleados a buscar:");
-        List<Empleado> listaEmpleadosTipo = controlPersis.traerEmpleadosPorTipo(cargoEmpleado);
-        if (listaEmpleadosTipo.isEmpty()) {
-            System.out.println("No se encontraron empleados con el cargo: " + cargoEmpleado);
-        } else {
-            System.out.println("----Lista de empleados de tipo " + cargoEmpleado + "----");
-            for (Empleado per : listaEmpleadosTipo) {
-                System.out.println(per.toString());
-            }
-        }
-    }
-
-
-
 
 }

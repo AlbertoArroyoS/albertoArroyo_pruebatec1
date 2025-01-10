@@ -1,12 +1,6 @@
 package org.example;
 
 import org.example.logica.Controladora;
-import org.example.logica.Empleado;
-import org.example.persistencia.controlador.ControladoraPersistencia;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Clase Main que contiene el método main para ejecutar la aplicación.
