@@ -1,11 +1,11 @@
 package org.example.persistencia.controlador;
 
 import org.example.logica.Empleado;
+import org.example.logica.Validaciones;
 import org.example.persistencia.dao.EmpleadoJpaController;
 import org.example.persistencia.exceptions.NonexistentEntityException;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class ControladoraPersistencia {
 
     EmpleadoJpaController empleadoJPA = new EmpleadoJpaController();
+    Validaciones validaciones = new Validaciones();
 
     Scanner leer = new Scanner(System.in);
 
@@ -44,7 +45,7 @@ public class ControladoraPersistencia {
      */
     public void borrarEmpleado() {
         // Validación del id como Long
-        Long idEmpleado = validarEntradaLong("Introduzca id del empleado a borrar");
+        Long idEmpleado = validaciones.validarEntradaLong("Introduzca id del empleado a borrar");
 
         try {
             empleadoJPA.destroy(idEmpleado);
@@ -144,91 +145,6 @@ public class ControladoraPersistencia {
         }
         return false; // No hay duplicados
     }
-    //******* METODOS DE VALIDACION DE ENTRADA DE DATOS ***************
-
-    /**
-     * Método para validar una entrada de tipo String, no puede estar vacía ni contener solo espacios en blanco
-     *
-     * @param mensaje que representa el mensaje a mostrar al usuario
-     * @return entrada de tipo String
-     */
-    public String validacionEntradaTexto(String mensaje) {
-        String entrada = "";
-        do {
-            System.out.println(mensaje);
-            entrada = leer.nextLine().trim();//trim para quitar los espacios al principio y final en caso de que los hayan puesto
-            if (entrada.isEmpty()) {
-                System.out.println("*** El campo no puede estar vacío ni contener solo espacios en blanco ***");
-            }
-        } while (entrada.trim().isEmpty());
-        return entrada;
-    }
-
-    /**
-     * Método para validar una entrada de tipo Double, solo se aceptan valores numéricos
-     *
-     * @param mensaje que representa el mensaje a mostrar al usuario
-     * @return entrada de tipo Double
-     */
-    public Double validarEntradaDecimal(String mensaje) {
-        Double entrada = 0.0;
-        boolean entradaValida = false;
-        while (!entradaValida) {
-            try {
-                System.out.println(mensaje);
-                entrada = Double.parseDouble(leer.nextLine().trim());
-                entradaValida = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Entrada no válida. Ingrese un valor numérico.");
-            }
-        }
-        return entrada;
-    }
-
-    /**
-     * Método para validar una entrada de tipo Date, solo se aceptan valores en el formato dd/mm/yyyy
-     *
-     * @param mensaje que representa el mensaje a mostrar al usuario
-     * @return entrada de tipo Date
-     */
-    public Date obtenerEntradaFecha(String mensaje) {
-        Date fecha = null;
-        boolean entradaValida = false;
-        while (!entradaValida) {
-            try {
-                System.out.println(mensaje);
-                String fechaString = leer.nextLine().trim();
-                // Formato esperado: dd/mm/yyyy
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                fecha = formato.parse(fechaString);
-                entradaValida = true;
-            } catch (ParseException e) {
-                System.out.println("Fecha no válida. Asegúrese de ingresar la fecha en el formato dd/mm/yyyy.");
-            }
-        }
-        return fecha;
-    }
-
-    /**
-     * Método para validar una entrada de tipo Long, solo se aceptan valores numéricos enteros
-     *
-     * @param mensaje que representa el mensaje a mostrar al usuario
-     * @return entrada de tipo Long
-     */
-    public Long validarEntradaLong(String mensaje) {
-        Long entrada = 0L;
-        boolean entradaValida = false;
-        while (!entradaValida) {
-            try {
-                System.out.println(mensaje);
-                entrada = Long.parseLong(leer.nextLine().trim()); // Convertir la entrada a long
-                entradaValida = true; // Si no hay excepción, la entrada es válida
-            } catch (NumberFormatException e) {
-                System.out.println("Entrada no válida. Ingrese un valor numérico entero de tipo long."); // Manejo de error
-            }
-        }
-        return entrada;
-    }
 
     /**
      * Método para pedir los datos de un empleado al usuario, con validaciones de entrada
@@ -237,10 +153,10 @@ public class ControladoraPersistencia {
      */
     public Empleado pedirDatosEmpleado() {
         // Validación para el nombre
-        String nombre = validacionEntradaTexto("Introduzca el nombre del empleado:");
+        String nombre = validaciones.validacionEntradaTexto("Introduzca el nombre del empleado:");
 
         // Validación para el apellido
-        String apellido = validacionEntradaTexto("Introduzca el apellido del empleado:");
+        String apellido = validaciones.validacionEntradaTexto("Introduzca el apellido del empleado:");
 
         // Verificar si ya existe un empleado con el mismo nombre y apellido
         if (existeEmpleadoConNombreYApellido(nombre, apellido)) {
@@ -249,13 +165,13 @@ public class ControladoraPersistencia {
         }
 
         // Validación para el cargo
-        String cargo = validacionEntradaTexto("Introduzca el cargo del empleado:");
+        String cargo = validaciones.validacionEntradaTexto("Introduzca el cargo del empleado:");
 
         // Validación para el salario
-        Double salario = validarEntradaDecimal("Introduzca el salario del empleado:");
+        Double salario = validaciones.validarEntradaDecimal("Introduzca el salario del empleado:");
 
         // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
-        Date fechaInicio = obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
+        Date fechaInicio = validaciones.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
 
         // Crear y devolver el empleado con los datos ingresados
         return new Empleado(nombre, apellido, cargo, salario, fechaInicio);
