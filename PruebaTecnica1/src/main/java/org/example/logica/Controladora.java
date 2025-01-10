@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase Controladora de la logica de la aplicación
+ */
 public class Controladora {
 
 
@@ -16,7 +19,7 @@ public class Controladora {
 
 
     public void agregarEmpleado() {
-        Empleado empleado = controlPersis.pedirDatosEmpleado();
+        Empleado empleado = pedirDatosEmpleado();
         controlPersis.crearEmpleado(empleado);
     }
 
@@ -236,6 +239,37 @@ public class Controladora {
         }
 
         return opcion;
+    }
+
+    /**
+     * Método para pedir los datos de un empleado al usuario, con validaciones de entrada
+     *
+     * @return empleado con los datos ingresados
+     */
+    public Empleado pedirDatosEmpleado() {
+        // Validación para el nombre
+        String nombre = validaciones.validacionEntradaTexto("Introduzca el nombre del empleado:");
+
+        // Validación para el apellido
+        String apellido = validaciones.validacionEntradaTexto("Introduzca el apellido del empleado:");
+
+        // Verificar si ya existe un empleado con el mismo nombre y apellido
+        if (controlPersis.existeEmpleadoConNombreYApellido(nombre, apellido)) {
+            System.out.println("Ya existe un empleado con el mismo nombre y apellido. No se puede dar de alta.");
+            return null; // Retornar null si el empleado ya existe
+        }
+
+        // Validación para el cargo
+        String cargo = validaciones.validacionEntradaTexto("Introduzca el cargo del empleado:");
+
+        // Validación para el salario
+        Double salario = validaciones.validarEntradaDecimal("Introduzca el salario del empleado:");
+
+        // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
+        Date fechaInicio = validaciones.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
+
+        // Crear y devolver el empleado con los datos ingresados
+        return new Empleado(nombre, apellido, cargo, salario, fechaInicio);
     }
 
 }

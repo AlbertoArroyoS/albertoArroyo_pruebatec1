@@ -7,10 +7,12 @@ import org.example.persistencia.exceptions.NonexistentEntityException;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Clase ControladoraPersistencia
@@ -44,14 +46,12 @@ public class ControladoraPersistencia {
     public void borrarEmpleado() {
         // Validación del id como Long
         Long idEmpleado = validaciones.validarEntradaLong("Introduzca id del empleado a borrar");
-
         try {
             empleadoJPA.destroy(idEmpleado);
             System.out.println("El empleado con ID " + idEmpleado + " ha sido borrado exitosamente.");
         } catch (NonexistentEntityException ex) {
             // Mensaje al usuario en caso de que el ID no exista
             System.out.println("Error: No se encontró un empleado con el ID " + idEmpleado + ". Por favor, verifique e intente nuevamente.");
-            //Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, "El empleado con ID " + idEmpleado + " no existe.", ex);
         } catch (Exception ex) {
             // Manejo genérico para cualquier otra excepción
             System.out.println("Ocurrió un error inesperado al intentar borrar el empleado.");
@@ -91,23 +91,19 @@ public class ControladoraPersistencia {
      * @return lista de empleados filtrados por tipo
      */
     public List<Empleado> traerEmpleadosPorTipo(String tipo) {
-        List<Empleado> empleadosFiltrados = new ArrayList<>();
         try {
-            // Obtener todos los empleados
-            List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
-
-            // Recorrer la lista de empleados y filtrar por el tipo
-            for (Empleado empleado : listaEmpleados) {
-                if (empleado.getCargo() != null && empleado.getCargo().equalsIgnoreCase(tipo)) {
-                    empleadosFiltrados.add(empleado);
-                }
-            }
+            // Usamos streams para filtrar la lista de empleados
+            return empleadoJPA.findEmpleadoEntities()
+                    .stream()
+                    .filter(empleado -> empleado.getCargo() != null && empleado.getCargo().equalsIgnoreCase(tipo))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println("Error al obtener los empleados por tipo: " + e.getMessage());
             e.printStackTrace();
+            return Collections.emptyList(); // Devolver una lista vacía en caso de error
         }
-        return empleadosFiltrados;
     }
+
 
     /**
      * Método para obtener un empleado por su ID
@@ -135,45 +131,14 @@ public class ControladoraPersistencia {
      * @return true si ya existe un empleado con el mismo nombre y apellido, false si no existe
      */
     public boolean existeEmpleadoConNombreYApellido(String nombre, String apellido) {
-        List<Empleado> listaEmpleados = empleadoJPA.findEmpleadoEntities();
-        for (Empleado e : listaEmpleados) {
-            if (e.getNombre().equalsIgnoreCase(nombre) && e.getApellido().equalsIgnoreCase(apellido)) {
-                return true; // Encontrado un empleado con el mismo nombre y apellido
-            }
+        try {
+            return empleadoJPA.findEmpleadoEntities()
+                    .stream()
+                    .anyMatch(e -> e.getNombre().equalsIgnoreCase(nombre) && e.getApellido().equalsIgnoreCase(apellido));
+        } catch (Exception e) {
+            System.out.println("Error al verificar si existe un empleado con el nombre y apellido especificados: " + e.getMessage());
+            return false; // En caso de error, se asume que no existe
         }
-        return false; // No hay duplicados
     }
-
-    /**
-     * Método para pedir los datos de un empleado al usuario, con validaciones de entrada
-     *
-     * @return empleado con los datos ingresados
-     */
-    public Empleado pedirDatosEmpleado() {
-        // Validación para el nombre
-        String nombre = validaciones.validacionEntradaTexto("Introduzca el nombre del empleado:");
-
-        // Validación para el apellido
-        String apellido = validaciones.validacionEntradaTexto("Introduzca el apellido del empleado:");
-
-        // Verificar si ya existe un empleado con el mismo nombre y apellido
-        if (existeEmpleadoConNombreYApellido(nombre, apellido)) {
-            System.out.println("Ya existe un empleado con el mismo nombre y apellido. No se puede dar de alta.");
-            return null; // Retornar null si el empleado ya existe
-        }
-
-        // Validación para el cargo
-        String cargo = validaciones.validacionEntradaTexto("Introduzca el cargo del empleado:");
-
-        // Validación para el salario
-        Double salario = validaciones.validarEntradaDecimal("Introduzca el salario del empleado:");
-
-        // Validación para la fecha de inicio (Formato: dd/mm/yyyy)
-        Date fechaInicio = validaciones.obtenerEntradaFecha("Introduzca la fecha de inicio del empleado (Formato: dd/mm/yyyy):");
-
-        // Crear y devolver el empleado con los datos ingresados
-        return new Empleado(nombre, apellido, cargo, salario, fechaInicio);
-    }
-
 
 }
